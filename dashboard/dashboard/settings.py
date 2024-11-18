@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,9 @@ SECRET_KEY = 'django-insecure-k!*s*zz0ya334ei5^-=^*4ky7x*v6j&6=fl24wkvj5gd8slpuy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['s4565901-balance-end.uqcloud.net']
+ALLOWED_HOSTS = ['s4565901-balance-end.uqcloud.net', '127.0.0.1', 'localhost']
+
+
 
 
 # Application definition
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dashboard_app',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +52,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app.middleware.UQRemoteUserMiddleware',
 ]
 
 ROOT_URLCONF = 'dashboard.urls'
@@ -55,7 +59,7 @@ ROOT_URLCONF = 'dashboard.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,10 +80,18 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',   # 数据库引擎，使用 MySQL
+        'NAME': 'balance_end',                     # 数据库名称
+        'USER': 'root',                        # 数据库用户名
+        'PASSWORD': '46ccb1c9b9cf20ea3923e865', # 数据库用户密码
+        'HOST': 'localhost',                   # 数据库服务器主机名
+        'PORT': '3306',                        # MySQL 默认端口
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # 设置严格模式
+        },
     }
 }
+
 
 
 # Password validation
@@ -117,6 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -128,3 +141,21 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.RemoteUserBackend',
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/dashboard_debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
