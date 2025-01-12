@@ -5,7 +5,7 @@ import banner from '../assets/logo/banner.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css'; // 引入 Bootstrap CSS
 import 'bootstrap-icons/font/bootstrap-icons.css'; // 引入 Bootstrap 图标
 
-const DashboardPage = () => {
+const LoginPage = () => {
     return (
         <div className="login-container">
             {/* 左侧表单 */}
@@ -173,4 +173,4 @@ const DashboardPage = () => {
     );
 };
 
-export default DashboardPage;
+export default LoginPage;
