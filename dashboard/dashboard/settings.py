@@ -26,10 +26,12 @@ SECRET_KEY = 'django-insecure-k!*s*zz0ya334ei5^-=^*4ky7x*v6j&6=fl24wkvj5gd8slpuy
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = ['s4565901-balance-end.uqcloud.net', '127.0.0.1', 'localhost']
 
-
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '').split(',') or [
+    'http://localhost:8080',
+    'http://s4565901-balance-end.uqcloud.net',
+]
 
 
 # Application definition
@@ -41,9 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'dashboard_app',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google', 
+    'corsheaders',
+    'rest_framework',
 ]
-
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,7 +61,24 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'APP': {
+            'client_id': '1055881748227-f4ngtelu829mdn8oqllpmjec5vpotdi0.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    }
+}
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 ROOT_URLCONF = 'dashboard.urls'
 
@@ -113,6 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -131,6 +158,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -138,7 +168,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.RemoteUserBackend',
+    'django.contrib.auth.backends.ModelBackend',  # 默认的认证方式
+    'allauth.account.auth_backends.AuthenticationBackend',  # 支持社交登录
 ]
 
 LOGGING = {
@@ -158,4 +189,38 @@ LOGGING = {
             'propagate': True,
         },
     },
+}
+
+
+LOGIN_REDIRECT_URL = '/'  # 登录成功后跳转到首页
+LOGOUT_REDIRECT_URL = '/'  # 登出后跳转到首页
+
+# Email backend 使用 SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# SMTP 服务器配置
+EMAIL_HOST = 'mailhub.eait.uq.edu.au'  # 使用 EAIT mailhubs
+EMAIL_PORT = 25                        # 使用 25 端口
+EMAIL_USE_TLS = False                  # StartTLS 可选，不强制使用
+EMAIL_USE_SSL = False                  # 不使用 SSL
+
+# 无需身份验证
+EMAIL_HOST_USER = None
+EMAIL_HOST_PASSWORD = None
+
+# 默认的发件人邮箱地址
+DEFAULT_FROM_EMAIL = 's4565901-balance-end@uqcloud.net'  # 替换为你的区域邮箱地址
+
+import logging
+logger = logging.getLogger('django')
+logger.debug("Test log entry")
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  # 开发阶段允许所有请求
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
 }
