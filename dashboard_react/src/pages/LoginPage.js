@@ -102,7 +102,7 @@ const LoginPage = () => {
                 </form>
                 <p className="text-center mt-3">
                     Don't have an account yet?{" "}
-                    <a href="/signUp/" className="text-decoration-none">
+                    <a href="/signup/" className="text-decoration-none">
                         New Account
                     </a>
                 </p>
