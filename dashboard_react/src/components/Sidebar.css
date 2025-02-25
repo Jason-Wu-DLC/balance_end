@@ -37,7 +37,7 @@
     font-weight: 500;
 }
 
-.nav-item i {
+.nav-icon {
     font-size: 1.2rem;
     margin-right: 10px;
     color: #1976d2;
@@ -47,11 +47,6 @@
 .nav-item.active {
     background-color: #e7f1fe;
     color: #1976d2;
-}
-
-.sidebar-footer {
-    margin-top: 20px;
-    text-align: center;
 }
 
 .support-button {
@@ -85,10 +80,6 @@
     border: 2px solid #ddd;
 }
 
-.user-details {
-    text-align: left;
-}
-
 .user-name {
     font-weight: bold;
     font-size: 0.9rem;
@@ -98,47 +89,4 @@
 .user-role {
     font-size: 0.8rem;
     color: #888;
-}
-
-/* 滚动条样式 */
-.sidebar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-    background-color: #1976d2;
-    border-radius: 10px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-        flex-direction: row;
-        align-items: center;
-        padding: 10px;
-    }
-
-    .sidebar-nav {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .nav-item {
-        padding: 5px 10px;
-        margin: 2px 0;
-    }
-
-    .support-button {
-        display: none;
-    }
 }

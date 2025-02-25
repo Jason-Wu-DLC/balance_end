@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['s4565901-balance-end.uqcloud.net', '127.0.0.1', 'localhost']
 CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '').split(',') or [
     'http://localhost:8080',
     'http://s4565901-balance-end.uqcloud.net',
+    'http://127.0.0.1:8000',
 ]
 
 
@@ -70,7 +71,7 @@ MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
+        'AUTH_PARAMS': {'access_type': 'offline'},
         'APP': {
             'client_id': '1055881748227-f4ngtelu829mdn8oqllpmjec5vpotdi0.apps.googleusercontent.com',
             'secret': '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',
@@ -80,7 +81,8 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 SOCIALACCOUNT_LOGIN_ON_GET = True
 
-ROOT_URLCONF = 'dashboard.urls'
+LOGIN_REDIRECT_URL = '/dashboard'  # 登录成功后跳转到 Dashboard
+LOGOUT_REDIRECT_URL = '/login'          # 登出后跳转到首页
 
 TEMPLATES = [
     {
@@ -192,9 +194,6 @@ LOGGING = {
 }
 
 
-LOGIN_REDIRECT_URL = '/'  # 登录成功后跳转到首页
-LOGOUT_REDIRECT_URL = '/'  # 登出后跳转到首页
-
 # Email backend 使用 SMTP
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -211,7 +210,6 @@ EMAIL_HOST_PASSWORD = None
 # 默认的发件人邮箱地址
 DEFAULT_FROM_EMAIL = 's4565901-balance-end@uqcloud.net'  # 替换为你的区域邮箱地址
 
-import logging
 logger = logging.getLogger('django')
 logger.debug("Test log entry")
 

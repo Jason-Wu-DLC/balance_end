@@ -6,9 +6,10 @@ from . import views
 urlpatterns = [
     # API 路由
     path('api/', include('dashboard_app.api_urls')),  # 引用 API 路由文件
+    
+    path('auth/google/callback', google_callback_view, name='google_callback'),
 
     # 账户和登录路由（如果需要后端登录功能）
-    path('accounts/', include('allauth.urls')),
     path('login/', views.login_page, name='login'),
     path('signUp/', views.signup_page, name='signUp'),
 
