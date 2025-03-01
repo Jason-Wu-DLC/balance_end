@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from allauth.socialaccount.views import oauth2_login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard_app.urls')),
-    path('auth/', include('allauth.urls')), 
+     path('auth/google/', oauth2_login, name='google_login'),
     path('api/', include('dashboard_app.api_urls')),
 ]
