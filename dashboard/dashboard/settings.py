@@ -29,12 +29,16 @@ SECRET_KEY = 'django-insecure-k!*s*zz0ya334ei5^-=^*4ky7x*v6j&6=fl24wkvj5gd8slpuy
 DEBUG = True
 ALLOWED_HOSTS = ['s4565901-balance-end.uqcloud.net', '127.0.0.1', 'localhost']
 
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '').split(',') or [
+CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
-    'http://s4565901-balance-end.uqcloud.net',
+    'https://s4565901-balance-end.uqcloud.net',
     'http://127.0.0.1:8000',
 ]
 
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://s4565901-balance-end.uqcloud.net',
+]
 
 # Application definition
 
@@ -49,8 +53,6 @@ INSTALLED_APPS = [
     'dashboard_app',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google', 
     'corsheaders',
     'rest_framework',
 ]
@@ -69,18 +71,7 @@ MIDDLEWARE = [
 
 MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'offline'},
-        'APP': {
-            'client_id': '1055881748227-f4ngtelu829mdn8oqllpmjec5vpotdi0.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
-        }
-    }
-}
-SOCIALACCOUNT_LOGIN_ON_GET = True
+
 
 LOGIN_REDIRECT_URL = '/dashboard'  # 登录成功后跳转到 Dashboard
 LOGOUT_REDIRECT_URL = '/login'          # 登出后跳转到首页

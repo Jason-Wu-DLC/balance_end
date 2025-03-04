@@ -37,9 +37,6 @@ const DashboardPage = () => {
                 <div className="charts">
                     <ModuleTimeChart data={moduleTimeData} />
                 </div>
-                <div className="charts">
-                    <TopreviewChart data={moduleTimeData} />
-                </div>
             </main>
         </div>
     );

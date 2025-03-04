@@ -19,25 +19,6 @@ const LoginPage = () => {
                     />
                 </div>
                 <h2>Log In</h2>
-                {/* Google 登录 */}
-                <a
-                    href="/auth/google"
-                    className="btn btn-outline-secondary w-100 mb-3"
-                >
-                    <img
-                        src="https://img.icons8.com/color/24/google-logo.png"
-                        alt="Google Logo"
-                        className="me-2"
-                    />
-                    Log in with Google
-                </a>
-
-                {/* 分隔线 */}
-                <div className="login-options">
-                    <hr />
-                    <span>Or</span>
-                    <hr />
-                </div>
 
                 {/* 邮箱和密码登录表单 */}
                 <form method="post" action="/login">
