@@ -98,6 +98,9 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+DATABASE_ROUTERS = ['dashboard_app.database_router.DatabaseRouter']
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',   # 数据库引擎，使用 MySQL
@@ -109,7 +112,16 @@ DATABASES = {
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # 设置严格模式
         },
+    },
+      'wordpress': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'u515158587_ukoDW',
+        'USER': 'root',
+        'PASSWORD': '46ccb1c9b9cf20ea3923e865',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
+    
 }
 
 
