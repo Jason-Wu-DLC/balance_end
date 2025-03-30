@@ -35,6 +35,17 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:8000',
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
+# 缓存超时设置
+VERIFICATION_CODE_EXPIRY = 600  # 验证码有效期（秒）
+PASSWORD_RESET_TIMEOUT = 3600 
+
 
 CSRF_TRUSTED_ORIGINS = [
     'https://s4565901-balance-end.uqcloud.net',
@@ -132,9 +143,15 @@ DATABASES = {
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'OPTIONS': {
+            'user_attributes': ('username', 'email', 'first_name', 'last_name'),
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 8,  # 最小密码长度
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -143,6 +160,11 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# 安全设置 - 添加在文件中
+SECURE_BROWSER_XSS_FILTER = True  # 启用XSS过滤
+SECURE_CONTENT_TYPE_NOSNIFF = True  # 防止MIME类型嗅探
+X_FRAME_OPTIONS = 'DENY'  # 防止点击劫持
 
 
 
@@ -163,6 +185,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # 用于collectstatic收集
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -181,11 +205,32 @@ AUTHENTICATION_BACKENDS = [
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': '/var/log/dashboard_debug.log',
+            'formatter': 'verbose',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+        'auth_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': '/var/log/dashboard_auth.log',
+            'formatter': 'verbose',
         },
     },
     'loggers': {
@@ -193,6 +238,16 @@ LOGGING = {
             'handlers': ['file'],
             'level': 'DEBUG',
             'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'auth': {  # 新增专门的认证日志
+            'handlers': ['auth_file'],
+            'level': 'INFO',
+            'propagate': False,
         },
     },
 }
@@ -212,17 +267,60 @@ EMAIL_HOST_USER = None
 EMAIL_HOST_PASSWORD = None
 
 # 默认的发件人邮箱地址
-DEFAULT_FROM_EMAIL = 's4565901-balance-end@uqcloud.net'  # 替换为你的区域邮箱地址
+DEFAULT_FROM_EMAIL = 's4565901-balance-end@uqcloud.net'  
+SERVER_EMAIL = 's4565901-balance-end@uqcloud.net'  
+
+# 邮件模板配置 - 添加在文件中
+ACCOUNT_EMAIL_SUBJECT_PREFIX = '[BALANCE] '  # 邮件主题前缀 
+EMAIL_SUBJECT_PREFIX = '[BALANCE] '  # 管理邮件主题前缀
+
+# 邮件验证码配置
+EMAIL_VERIFICATION_CODE_LENGTH = 6  # 验证码长度
+EMAIL_VERIFICATION_CODE_EXPIRY = 600  
 
 logger = logging.getLogger('django')
 logger.debug("Test log entry")
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',  # 开发阶段允许所有请求
+        'rest_framework.permissions.IsAuthenticated',  # 默认要求认证
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',  # 匿名用户限制
+        'user': '1000/day'  # 登录用户限制
+    },
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
+    'NON_FIELD_ERRORS_KEY': 'error',
 }
+
+
+# 添加到文件中 - AllAuth 和认证设置
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # 使用邮箱登录
+ACCOUNT_EMAIL_REQUIRED = True  # 要求用户提供电子邮件
+ACCOUNT_UNIQUE_EMAIL = True  # 电子邮件必须是唯一的
+ACCOUNT_USERNAME_REQUIRED = False  # 不要求用户名
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'  # 强制电子邮件验证
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'  # 在电子邮件链接中使用 HTTPS
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5  # 登录尝试次数限制
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300  # 超过尝试次数后等待时间（秒）
+
+# 自定义用户登录重定向和登出重定向
+LOGIN_URL = '/login/'  # 未登录用户重定向地址
+LOGIN_REDIRECT_URL = '/dashboard/'  # 登录成功后跳转地址
+LOGOUT_REDIRECT_URL = '/login/'  # 登出后跳转地址
+
+# 会话配置，提高安全性
+SESSION_COOKIE_SECURE = True  # 仅通过HTTPS发送cookie
+SESSION_COOKIE_HTTPONLY = True  # 防止JavaScript访问cookie
+SESSION_COOKIE_AGE = 86400  # 会话过期时间（秒）- 1天
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # 浏览器关闭时会话不过期
+
+ADMINS = [('Admin', 's4565901@student.uq.edu.au')]

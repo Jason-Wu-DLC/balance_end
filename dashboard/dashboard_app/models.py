@@ -67,3 +67,74 @@ class WPComments(models.Model):
 
     def __str__(self):
         return f"Comment by {self.comment_author} on {self.comment_date}"
+    
+
+class VerificationCode(models.Model):
+    """
+    验证码模型，用于邮箱验证和密码重置
+    """
+    email = models.EmailField(verbose_name="邮箱地址")
+    code = models.CharField(max_length=6, verbose_name="验证码")
+    purpose = models.CharField(max_length=20, choices=[
+        ('register', '注册'),
+        ('reset_password', '重置密码'),
+    ], verbose_name="用途")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
+    expires_at = models.DateTimeField(verbose_name="过期时间")
+    is_used = models.BooleanField(default=False, verbose_name="是否已使用")
+    
+    class Meta:
+        verbose_name = "验证码"
+        verbose_name_plural = "验证码列表"
+        
+    def __str__(self):
+        return f"{self.email} - {self.purpose} ({self.code})"
+    
+    @classmethod
+    def generate_code(cls, email, purpose):
+        """
+        生成新的验证码
+        """
+        # 生成6位随机数字验证码
+        code = ''.join(random.choices(string.digits, k=6))
+        
+        # 设置过期时间（10分钟后）
+        expires_at = datetime.now() + timedelta(minutes=10)
+        
+        # 如果存在未过期的验证码，先标记为已使用
+        cls.objects.filter(
+            email=email, 
+            purpose=purpose, 
+            is_used=False, 
+            expires_at__gt=datetime.now()
+        ).update(is_used=True)
+        
+        # 创建新验证码
+        verification = cls.objects.create(
+            email=email,
+            code=code,
+            purpose=purpose,
+            expires_at=expires_at
+        )
+        
+        return verification
+    
+    @classmethod
+    def verify_code(cls, email, code, purpose):
+        """
+        验证验证码是否有效
+        """
+        verification = cls.objects.filter(
+            email=email,
+            code=code,
+            purpose=purpose,
+            is_used=False,
+            expires_at__gt=datetime.now()
+        ).first()
+        
+        if verification:
+            verification.is_used = True
+            verification.save()
+            return True
+        
+        return False

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // 路由跳转
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './SignupPage.css';
 import logo from '../assets/logo/logo.png';
 import banner from '../assets/logo/banner.jpg';
@@ -12,11 +13,14 @@ const SignupPage = () => {
         fullname: '',
         email: '',
         password: '',
+        verificationCode: '',
         terms: false,
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [showPassword, setShowPassword] = useState(false); // 控制密码显示
+    const [showPassword, setShowPassword] = useState(false);
+    const [verificationSent, setVerificationSent] = useState(false);
+    const [verificationLoading, setVerificationLoading] = useState(false);
 
     // 处理表单数据变化
     const handleChange = (e) => {
@@ -27,6 +31,30 @@ const SignupPage = () => {
         });
     };
 
+    // 发送验证码
+    const sendVerificationCode = async () => {
+        if (!formData.email) {
+            setError('请输入有效的邮箱地址');
+            return;
+        }
+        
+        setVerificationLoading(true);
+        try {
+            const response = await axios.post('/api/send-verification-code/', {
+                email: formData.email
+            });
+            
+            if (response.data.success) {
+                setVerificationSent(true);
+                setError('');
+            }
+        } catch (err) {
+            setError(err.response?.data?.error || '发送验证码失败，请稍后重试');
+        } finally {
+            setVerificationLoading(false);
+        }
+    };
+
     // 处理表单提交
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,25 +62,22 @@ const SignupPage = () => {
         setError('');
 
         try {
-            const response = await fetch('/api/signup/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+            const response = await axios.post('/api/signup/', {
+                fullname: formData.fullname,
+                email: formData.email,
+                password: formData.password,
+                verification_code: formData.verificationCode
             });
 
-            const data = await response.json();
-
-            if (response.ok) {
-                alert('Signup Successful! Redirecting to Dashboard...');
+            if (response.data.message === 'Signup successful, email sent!') {
+                alert('注册成功! 已发送确认邮件到您的邮箱，请查收');
                 navigate('/dashboard'); // 跳转到仪表盘
-            } else {
-                setError(data.error || 'Signup failed. Please try again.');
             }
         } catch (err) {
-            setError('Network error. Please try again.');
+            setError(err.response?.data?.error || '注册失败，请检查表单信息');
+        } finally {
+            setLoading(false);
         }
-
-        setLoading(false);
     };
 
     return (
@@ -61,42 +86,68 @@ const SignupPage = () => {
                 <div className="text-center mb-4">
                     <img src={logo} alt="Logo" className="img-fluid" style={{ maxWidth: '300px', height: 'auto' }} />
                 </div>
-                <h2>Sign Up</h2>
-                {error && <p className="text-danger">{error}</p>}
+                <h2>注册新账号</h2>
+                {error && <div className="alert alert-danger">{error}</div>}
                 <form onSubmit={handleSubmit}>
-                    {/* Full Name */}
+                    {/* 姓名 */}
                     <div className="mb-3">
-                        <label htmlFor="fullname" className="form-label">Full Name</label>
+                        <label htmlFor="fullname" className="form-label">姓名</label>
                         <input
                             type="text"
                             className="form-control"
                             id="fullname"
                             name="fullname"
-                            placeholder="John Kevine"
+                            placeholder="请输入您的姓名"
                             required
                             value={formData.fullname}
                             onChange={handleChange}
                         />
                     </div>
 
-                    {/* Email Address */}
+                    {/* 邮箱地址 */}
                     <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email Address</label>
+                        <label htmlFor="email" className="form-label">邮箱地址</label>
+                        <div className="input-group">
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="email"
+                                name="email"
+                                placeholder="example@gmail.com"
+                                required
+                                value={formData.email}
+                                onChange={handleChange}
+                                disabled={verificationSent}
+                            />
+                            <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={sendVerificationCode}
+                                disabled={verificationLoading || verificationSent}
+                            >
+                                {verificationLoading ? '发送中...' : verificationSent ? '已发送' : '获取验证码'}
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* 验证码 */}
+                    <div className="mb-3">
+                        <label htmlFor="verificationCode" className="form-label">验证码</label>
                         <input
-                            type="email"
+                            type="text"
                             className="form-control"
-                            id="email"
-                            name="email"
-                            placeholder="example@gmail.com"
+                            id="verificationCode"
+                            name="verificationCode"
+                            placeholder="请输入邮箱收到的验证码"
                             required
-                            value={formData.email}
+                            value={formData.verificationCode}
                             onChange={handleChange}
                         />
                     </div>
 
-                    {/* Password */}
+                    {/* 密码 */}
                     <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
+                        <label htmlFor="password" className="form-label">密码</label>
                         <div className="input-group">
                             <input
                                 type={showPassword ? "text" : "password"}
@@ -118,7 +169,7 @@ const SignupPage = () => {
                         </div>
                     </div>
 
-                    {/* Terms and Conditions */}
+                    {/* 服务条款 */}
                     <div className="form-check mb-3">
                         <input
                             className="form-check-input"
@@ -130,19 +181,19 @@ const SignupPage = () => {
                             onChange={handleChange}
                         />
                         <label className="form-check-label" htmlFor="terms">
-                            By creating an account you agree to the <a href="#" className="terms-link">terms of use</a> and <a href="#" className="terms-link">privacy policy</a>.
+                            我已阅读并同意 <a href="#" className="terms-link">服务条款</a> 和 <a href="#" className="terms-link">隐私政策</a>
                         </label>
                     </div>
 
-                    {/* Submit Button */}
-                    <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-                        {loading ? 'Creating Account...' : 'Create Account'}
+                    {/* 提交按钮 */}
+                    <button type="submit" className="btn btn-primary w-100" disabled={loading || !verificationSent}>
+                        {loading ? '注册中...' : '创建账号'}
                     </button>
                 </form>
 
-                {/* Already Have Account */}
+                {/* 已有账号 */}
                 <p className="text-center mt-3">
-                    Already have an account? <a href="/login" className="text-decoration-none">Log in</a>
+                    已有账号? <a href="/login" className="text-decoration-none">登录</a>
                 </p>
             </div>
 
