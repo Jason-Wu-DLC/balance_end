@@ -1,0 +1,78 @@
+.session-activity-card {
+  margin-bottom: 20px;
+}
+
+.heatmap-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.heatmap-labels {
+  display: flex;
+  margin-left: 60px;
+  margin-bottom: 5px;
+}
+
+.hour-label-placeholder {
+  width: 60px;
+}
+
+.hour-label {
+  width: 25px;
+  font-size: 10px;
+  text-align: center;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  margin-right: 5px;
+}
+
+.heatmap-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.heatmap-row {
+  display: flex;
+  margin-bottom: 2px;
+}
+
+.day-label {
+  width: 60px;
+  font-size: 12px;
+  text-align: right;
+  padding-right: 10px;
+  line-height: 20px;
+}
+
+.heatmap-cell {
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+  border-radius: 2px;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.legend-items {
+  display: flex;
+  margin-left: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.legend-color {
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  margin-right: 5px;
+}

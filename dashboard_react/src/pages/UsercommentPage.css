@@ -1,0 +1,106 @@
+/* 用户评论页面特定样式 */
+
+/* 布局样式 */
+.usercomment-site-layout {
+  background: var(--bg-main); /* 替换固定颜色 #f0f2f5 */
+}
+
+.usercomment-site-content {
+  margin-left: 240px;
+  padding: 24px;
+  min-height: 280px;
+}
+
+/* 标题样式 */
+.usercomment-page-header {
+  background: var(--bg-card); /* 替换固定颜色 white */
+  border-radius: 4px;
+  margin-bottom: 16px;
+  padding: 16px 24px;
+  box-shadow: var(--shadow-sm); /* 替换固定阴影 */
+}
+
+/* 面包屑样式 */
+.usercomment-breadcrumb {
+  margin: 16px 0;
+}
+
+/* 统计卡片行样式 */
+.usercomment-stats-row {
+  margin-bottom: 24px;
+}
+
+.usercomment-stats-row .ant-card {
+  height: 100%;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.usercomment-stats-row .ant-card:hover {
+  box-shadow: var(--shadow-lg); /* 替换固定阴影 */
+  transform: translateY(-2px);
+}
+
+/* 评论面板容器样式 */
+.usercomment-board-container {
+  background-color: var(--bg-card); /* 替换固定颜色 white */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm); /* 替换固定阴影 */
+}
+
+/* 自定义页面标题 */
+.usercomment-custom-page-header {
+  background: var(--bg-card); /* 替换固定颜色 white */
+  border-radius: 4px;
+  margin-bottom: 16px;
+  padding: 16px 24px;
+  box-shadow: var(--shadow-sm); /* 替换固定阴影 */
+}
+
+/* 统计加载容器 */
+.usercomment-statistics-loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+/* 统计卡片 */
+.usercomment-stat-card {
+  transition: all 0.3s;
+}
+
+.usercomment-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg); /* 替换固定阴影 */
+}
+
+/* 第三方组件样式覆盖 */
+.usercomment-page .ant-statistic-title {
+  color: var(--text-secondary); /* 替换固定颜色 #5b6b7b */
+}
+
+.usercomment-page .ant-statistic-content {
+  color: var(--text-primary); /* 替换固定颜色 #344767 */
+}
+
+.usercomment-page .ant-statistic-content-value {
+  font-weight: 600;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .usercomment-site-content {
+    padding: 12px;
+  }
+  
+  .usercomment-stats-row .ant-card {
+    margin-bottom: 12px;
+  }
+  
+  .usercomment-page-header {
+    padding: 12px;
+  }
+}

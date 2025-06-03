@@ -1,0 +1,60 @@
+.favorites-card {
+  margin-bottom: 20px;
+}
+
+.favorites-container {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.favorites-list {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.favorites-chart {
+  flex: 1;
+}
+
+.favorite-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.favorite-info {
+  display: flex;
+  align-items: center;
+}
+
+.star-icon {
+  color: #ffc53d;
+  margin-right: 8px;
+}
+
+.favorites-summary {
+  margin-top: 24px;
+}
+
+.summary-card {
+  text-align: center;
+}
+
+.summary-count {
+  display: block;
+  margin-top: 8px;
+  color: #1890ff;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .favorites-container {
+    flex-direction: column;
+  }
+  
+  .favorites-list, .favorites-chart {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}

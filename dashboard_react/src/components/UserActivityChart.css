@@ -1,0 +1,76 @@
+.chart-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .interval-controls {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .interval-controls button {
+    padding: 8px 16px;
+    border: 1px solid #e0e0e0;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .interval-controls button.active {
+    background-color: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+  }
+  
+  .interval-controls button:hover:not(.active) {
+    background-color: #e8e8e8;
+  }
+  
+  .empty-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    color: #666;
+    font-style: italic;
+  }
+  
+  .custom-tooltip {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .tooltip-date {
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+  }
+  
+  .tooltip-label {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .tooltip-new-users {
+    color: #8884d8;
+  }
+  
+  .tooltip-active-users {
+    color: #82ca9d;
+  }

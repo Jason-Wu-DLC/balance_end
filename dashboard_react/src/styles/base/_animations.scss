@@ -1,0 +1,122 @@
+// 淡入淡出
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  
+  // 滑动
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      visibility: visible;
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOutLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+      visibility: hidden;
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      visibility: visible;
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+      visibility: hidden;
+    }
+  }
+  
+  // 脉冲
+  @keyframes pulse {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+    50% {
+      transform: scale3d(1.05, 1.05, 1.05);
+    }
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
+  
+  // 旋转
+  @keyframes spinner {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  // CSS 类
+  .fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  .fade-out {
+    animation: fadeOut 0.3s ease-out;
+  }
+  
+  .slide-in-left {
+    animation: slideInLeft 0.3s ease-out;
+  }
+  
+  .slide-out-left {
+    animation: slideOutLeft 0.3s ease-in;
+  }
+  
+  .slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+  
+  .slide-out-right {
+    animation: slideOutRight 0.3s ease-in;
+  }
+  
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spinner 0.8s linear infinite;
+  }
+  
+  // 过渡
+  .transition-all {
+    transition: all 0.3s ease;
+  }
+  
+  .transition-opacity {
+    transition: opacity 0.3s ease;
+  }
+  
+  .transition-transform {
+    transition: transform 0.3s ease;
+  }

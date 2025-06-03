@@ -1,0 +1,93 @@
+/* 统计卡片的基本样式 */
+.stats-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stats-icon {
+    font-size: 2rem;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #eaf4fe;
+    color: #1976d2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.stats-info {
+    flex: 1;
+}
+
+.stats-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #555;
+    margin: 0;
+}
+
+.stats-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1976d2;
+    margin: 5px 0 0 0;
+}
+
+.stats-footer {
+    font-size: 0.8rem;
+    color: #888;
+    display: flex;
+    align-items: center;
+}
+
+.stats-footer i {
+    margin-right: 5px;
+    color: #888;
+}
+
+/* 不同状态的卡片样式 */
+.stats-card.success .stats-icon {
+    background-color: #e6f4ea;
+    color: #388e3c;
+}
+
+.stats-card.warning .stats-icon {
+    background-color: #fff4e5;
+    color: #f57c00;
+}
+
+.stats-card.danger .stats-icon {
+    background-color: #fdecea;
+    color: #d32f2f;
+}
+
+.stats-card.info .stats-icon {
+    background-color: #eaf4fe;
+    color: #1976d2;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .stats-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stats-icon {
+        margin: 0 0 10px 0;
+    }
+}

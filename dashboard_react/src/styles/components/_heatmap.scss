@@ -1,0 +1,179 @@
+:root {
+    --heatmap-empty-color: #f0f0f0;
+    --heatmap-border-color: #e0e0e0;
+    --heatmap-text-color: #333;
+    --heatmap-highlight-color: #007bff;
+  }
+  
+  .heatmap-container {
+    position: relative;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    
+    .heatmap-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      overflow-x: auto;
+    }
+    
+    .heatmap-corner {
+      width: 60px;
+      height: 25px;
+      background-color: transparent;
+    }
+    
+    .heatmap-hour-labels {
+      display: flex;
+      margin-left: 60px; // Space for day labels
+      
+      .heatmap-hour-label {
+        flex: 1 0 40px;
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        padding: 4px 0;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+    }
+    
+    .heatmap-grid {
+      display: flex;
+      flex-direction: column;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      
+      .heatmap-row {
+        display: flex;
+        height: 40px;
+        align-items: center;
+        
+        &:nth-child(odd) {
+          background-color: rgba(0,0,0,0.02);
+        }
+        
+        .heatmap-day-label {
+          width: 60px;
+          font-weight: 600;
+          padding: 0 12px;
+          text-align: left;
+          color: var(--text-primary);
+        }
+        
+        .heatmap-cells {
+          display: flex;
+          flex: 1;
+        }
+        
+        .heatmap-cell {
+          flex: 1 0 40px;
+          height: 35px;
+          margin: 0 1px;
+          border-radius: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.75rem;
+          font-weight: 600;
+          color: white;
+          transition: all 0.2s ease;
+          cursor: pointer;
+          
+          &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+          }
+          
+          &.has-value {
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+          }
+        }
+      }
+    }
+    
+    .heatmap-tooltip {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+      font-size: 0.875rem;
+      
+      strong {
+        display: block;
+        margin-bottom: 0.25rem;
+        color: var(--primary-color);
+      }
+    }
+    
+    .heatmap-legend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1.5rem;
+      gap: 0.5rem;
+      
+      span {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+      
+      .heatmap-legend-gradient {
+        height: 10px;
+        width: 200px;
+        border-radius: 5px;
+        background: linear-gradient(to right, 
+          rgba(0, 123, 255, 0.2), 
+          rgba(0, 123, 255, 0.4), 
+          rgba(0, 123, 255, 0.6), 
+          rgba(0, 123, 255, 0.8), 
+          rgba(0, 123, 255, 1)
+        );
+      }
+    }
+    
+    .chart-info {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .heatmap-container {
+      .heatmap-hour-labels .heatmap-hour-label,
+      .heatmap-grid .heatmap-row .heatmap-cell {
+        flex-basis: 30px; // Smaller cells on mobile
+      }
+      
+      .heatmap-grid .heatmap-row .heatmap-day-label {
+        width: 40px;
+        padding: 0 8px;
+      }
+      
+      .heatmap-grid .heatmap-row .heatmap-cell {
+        height: 30px;
+      }
+    }
+  }
+  
+  // Dark theme support
+  [data-theme="dark"] {
+    .heatmap-container {
+      --heatmap-empty-color: #2a2a2a;
+      --heatmap-border-color: #444444;
+    }
+  }

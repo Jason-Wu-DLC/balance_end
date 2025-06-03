@@ -1,0 +1,107 @@
+.mobile-hidden {
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+// Hide elements on desktop
+.desktop-hidden {
+  @media (min-width: 768px) {
+    display: none !important;
+  }
+}
+
+// Full width on mobile
+.mobile-full-width {
+  @media (max-width: 767px) {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+  }
+}
+
+// Scrollable containers for tables on mobile
+.mobile-scrollable {
+  @media (max-width: 767px) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// Fix for charts on mobile
+.recharts-responsive-container {
+  @media (max-width: 767px) {
+    min-height: 250px !important;
+  }
+}
+
+// Adjust date pickers for mobile
+.date-picker,
+.date-range-picker {
+  @media (max-width: 767px) {
+    flex-direction: column;
+    width: 100%;
+    
+    .date-picker-input,
+    input[type="date"] {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    
+    .date-separator {
+      margin: 0.25rem 0;
+    }
+  }
+}
+
+// Adjust chart controls
+.chart-controls {
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    
+    .control-group {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-select {
+      width: 100%;
+    }
+  }
+}
+
+// Mobile navigation for tabs
+.settings-tabs,
+.dashboard-tabs {
+  @media (max-width: 767px) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    
+    .nav-link {
+      white-space: nowrap;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+}
+
+// Stats cards
+.stats-card {
+  @media (max-width: 767px) {
+    margin-bottom: 1rem;
+  }
+}
+
+// Button groups
+.btn-group {
+  @media (max-width: 767px) {
+    display: flex;
+    flex-wrap: wrap;
+    
+    .btn {
+      flex: 1 0 auto;
+      margin-bottom: 0.25rem;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+from django.urls import path, include
+from django.views.generic import TemplateView
+from django.contrib.auth import views as auth_views
+from dashboard_app import views
+
+urlpatterns = [
+
+        # API Endpoints
+        path('login/', views.api_login, name='api_login'),
+        path('logout/', views.api_logout, name='api_logout'),
+        path('signup/', views.api_signup, name='api_signup'),
+        path('dashboard-data', views.api_dashboard, name='api_dashboard'),
+        path('user-info/', views.get_user_info, name='user_info'),
+        path('active-users/', views.get_active_users, name='api_active_users'),
+        path('feedback-count/', views.get_feedback_count, name='api_feedback_count'),
+        path('total-notes/', views.get_total_notes, name='get_total_notes'),
+        path('check-auth/', views.check_auth, name='check_auth'),
+        path('user-activity-trends/', views.user_activity_trends, name='user_activity_trends'),
+        path('password-reset/get-questions/', views.get_security_questions, name='password_reset_get_questions'),
+        path('password-reset/verify-answers/', views.verify_security_answers, name='password_reset_verify_answers'),
+        path('password-reset/reset/', views.reset_password, name='password_reset_reset'), 
+        path('note-text-analysis/', views.note_text_analysis, name='note_text_analysis'),
+        path('model-note-relationship/', views.model_note_relationship, name='model_note_relationship'),
+        path('note-upload-trends/', views.note_upload_trends, name='note_upload_trends'),
+        path('module-notes-content/', views.module_notes_content, name='module_notes_content'),
+        path('notes/statistics/', views.notes_statistics, name='notes_statistics'),
+        path('user-favorites/', views.user_favorites, name='user-favorites'),
+        path('module-completion-status/', views.module_completion_status, name='module-completion-status'),
+        path('session-activity/', views.session_activity, name='session-activity'),
+        path('user-posts-analysis/', views.user_posts_analysis, name='user-posts-analysis'),
+        path('wordpress-users/', views.get_wordpress_users, name='wordpress_users'),  
+        path('course-progress-analysis/', views.course_progress_analysis, name='course_progress_analysis'),
+        path('user/profile/', views.user_profile, name='user_profile'),
+        path('user/change-password/', views.change_password, name='change_password'),
+        path('user/security-questions/', views.security_questions_management, name='security_questions'),
+        path('user/preferences/', views.user_preferences, name='user_preferences'),
+        path('admin/users/', views.user_management_list, name='user_management_list'),
+        path('admin/users/<int:user_id>/', views.user_management_detail, name='user_management_detail'),
+        path('admin/users/create/', views.create_user, name='create_user'),
+        path('admin/system/logs/', views.system_logs, name='system_logs'),
+        path('admin/system/info/', views.system_info, name='system_info'),
+        path('analytics/visit-duration/', views.visit_duration_distribution, name='visit_duration'),
+        path('analytics/comment-sources/', views.comment_source_analysis, name='comment_sources'),
+        path('analytics/course-sources/', views.course_source_analysis, name='course-sources/'),
+        path('analytics/comment-time-distribution/', views.comment_time_distribution, name='comment_time'),
+        path('analytics/visit-depth/', views.visit_depth_analysis, name='visit_depth'),
+        path('analytics/navigation-paths/', views.user_navigation_paths, name='navigation_paths'),
+        path('analytics/course-completion-frequency/', views.course_completion_vs_frequency, name='course_completion'),
+        path('analytics/learning-time-distribution/', views.learning_time_distribution, name='learning_time'),
+        path('analytics/visit-trends/', views.visit_trends, name='visit_trends'),
+        path('analytics/popular-content/', views.popular_content, name='popular_content'),
+        path('user-content-interaction/', views.user_content_interaction, name='user_content_interaction'),
+        path('support-requests/', views.support_requests, name='support_requests'),
+        path('support-requests/<int:ticket_id>/', views.support_request_detail, name='support_request_detail'),
+        path('support-requests/<int:ticket_id>/respond/', views.add_support_response, name='add_support_response'),
+        path('csrf-token/', views.get_csrf_token, name='get_csrf_token'),
+        ]
+

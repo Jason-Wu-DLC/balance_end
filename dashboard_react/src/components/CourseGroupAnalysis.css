@@ -1,0 +1,33 @@
+.course-group-card {
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .empty-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 16px;
+  }
+  
+  .ant-card-head-title {
+    font-weight: 600;
+  }
+  
+  .ant-tag {
+    margin-bottom: 4px;
+  }
+  
+  .chart-container {
+    height: 400px;
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .ant-card-extra {
+      margin-left: 0;
+      margin-bottom: 16px;
+    }
+  }

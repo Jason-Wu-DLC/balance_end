@@ -1,0 +1,168 @@
+// 用户和课程进度页面共享样式
+.progress-page {
+    .progress-title {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .progress-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  // 用户选择器
+  .user-selector {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 400px;
+    
+    .selector-label {
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+  }
+  
+  // 模块完成状态卡片
+  .module-completion-card {
+    margin-bottom: 1.5rem;
+    
+    .module-status-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -0.75rem;
+      
+      .module-status-col {
+        flex: 0 0 33.333333%;
+        padding: 0 0.75rem;
+        margin-bottom: 1.5rem;
+        
+        @media (max-width: $breakpoint-md) {
+          flex: 0 0 50%;
+        }
+        
+        @media (max-width: $breakpoint-sm) {
+          flex: 0 0 100%;
+        }
+      }
+    }
+    
+    .module-status-card {
+      height: 100%;
+      padding: 1.5rem;
+      background-color: var(--bg-card);
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow);
+      
+      .module-name {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+      }
+      
+      .status-badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        
+        &.not-started {
+          background-color: var(--secondary-color);
+          color: #fff;
+        }
+        
+        &.in-progress {
+          background-color: var(--warning-color);
+          color: #212529;
+        }
+        
+        &.completed {
+          background-color: var(--success-color);
+          color: #fff;
+        }
+      }
+      
+      .progress-bar {
+        height: 8px;
+        background-color: var(--bg-header);
+        border-radius: 4px;
+        margin-top: 0.5rem;
+        overflow: hidden;
+        
+        .progress-value {
+          height: 100%;
+          background-color: var(--primary-color);
+          border-radius: 4px;
+          
+          &.completed {
+            background-color: var(--success-color);
+          }
+        }
+      }
+      
+      .module-dates {
+        margin-top: 1rem;
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        
+        .date-item {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 0.25rem;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+          
+          .date-label {
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+  
+  // 会话活动热图
+  .session-activity-card {
+    margin-bottom: 1.5rem;
+    
+    .heatmap-container {
+      margin-top: 1.5rem;
+      overflow-x: auto;
+    }
+  }
+  
+  // 用户收藏卡片
+  .favorites-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  
+  // 用户帖子分析
+  .post-analysis-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  
+  // 课程进度概览
+  .course-progress-overview {
+    margin-bottom: 1.5rem;
+    
+    .stats-row {
+      margin-bottom: 1.5rem;
+    }
+    
+    .course-status-distribution {
+      height: 300px;
+    }
+  }
+  
+  // 课程列表
+  .course-list-wrapper {
+    margin-bottom: 1.5rem;
+  }
+  
+  // 课程组分析
+  .course-group-wrapper {
+    margin-bottom: 1.5rem;
+  }

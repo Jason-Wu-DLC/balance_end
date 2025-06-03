@@ -1,0 +1,18 @@
+[0;1;32m●[0m code-server@s4565901.service - VS Code Server IDE
+     Loaded: loaded (/lib/systemd/system/code-server@.service; enabled; vendor preset: enabled)
+     Active: [0;1;32mactive (running)[0m since Wed 2024-12-11 00:46:27 UTC; 3 weeks 5 days ago
+   Main PID: 180416 ((e-server))
+     CGroup: /system.slice/system-code\x2dserver.slice/code-server@s4565901.service
+             ├─ 75737 /usr/lib/code-server/lib/node /usr/lib/code-server/lib/vscode/out/bootstrap-fork --type=ptyHost --logsPath /home/s4565901/.local/share/code-server/logs/20241217T082730
+             ├─ 75862 /bin/sh
+             ├─ 81266 /usr/lib/code-server/lib/node /usr/lib/code-server/lib/vscode/out/bootstrap-fork --type=fileWatcher
+             ├─112003 /usr/lib/code-server/lib/node /usr/lib/code-server/lib/vscode/out/bootstrap-fork --type=fileWatcher
+             ├─180416 /usr/lib/code-server/lib/node /usr/lib/code-server --socket /tmp/.code-server-s4565901 --auth none /var/www
+             ├─180507 /usr/lib/code-server/lib/node /usr/lib/code-server/out/node/entry
+             ├─254314 /usr/lib/code-server/lib/node /usr/lib/code-server/lib/vscode/out/bootstrap-fork --type=fileWatcher
+             ├─450829 /usr/lib/code-server/lib/node /usr/lib/code-server/lib/vscode/out/bootstrap-fork --type=fileWatcher
+             ├─981452 /usr/lib/code-server/lib/node --dns-result-order=ipv4first /usr/lib/code-server/lib/vscode/out/bootstrap-fork --type=extensionHost --transformURIs --useHostProxy=false
+             ├─981465 /usr/lib/code-server/lib/node /usr/lib/code-server/lib/vscode/out/bootstrap-fork --type=fileWatcher
+             ├─981489 /usr/lib/code-server/lib/node --max-old-space-size=3072 /usr/lib/code-server/lib/vscode/extensions/node_modules/typescript/lib/tsserver.js --serverMode partialSemantic --useInferredProjectPerProjectRoot --disableAutomaticTypingAcquisition --cancellationPipeName /tmp/vscode-typescript1000/ec16788423e4c5b8d345/tscancellation-6fa4cff01a4e039c32e3.tmp* --locale en --noGetErrOnBackgroundUpdate --canUseWatchEvents --validateDefaultNpmLocation --useNodeIpc
+             ├─981490 /usr/lib/code-server/lib/node --max-old-space-size=3072 /usr/lib/code-server/lib/vscode/extensions/node_modules/typescript/lib/tsserver.js --useInferredProjectPerProjectRoot --enableTelemetry --cancellationPipeName /tmp/vscode-typescript1000/ec16788423e4c5b8d345/tscancellation-f09f0c9d88c880608df0.tmp* --locale en --noGetErrOnBackgroundUpdate --canUseWatchEvents --validateDefaultNpmLocation --useNodeIpc
+             └─981509 /usr/lib/code-server/lib/node /usr/lib/code-server/lib/vscode/extensions/node_modules/typescript/lib/typingsInstaller.js --globalTypingsCacheLocation /home/s4565901/.cache/typescript/5.4 --enableTelemetry --typesMapLocation /usr/lib/code-server/lib/vscode/extensions/node_modules/typescript/lib/typesMap.json --validateDefaultNpmLocation

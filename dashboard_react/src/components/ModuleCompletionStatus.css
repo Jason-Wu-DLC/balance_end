@@ -1,0 +1,22 @@
+.module-completion-card {
+  margin-bottom: 20px;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.module-status-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.module-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}

@@ -1,0 +1,66 @@
+
+
+// 深色主题
+:root[data-theme="dark"],
+body.dark-mode {
+  --primary-color: #0d6efd;
+  --secondary-color: #adb5bd;
+  --success-color: #2fb344;
+  --danger-color: #e74c3c;
+  --warning-color: #f39c12;
+  --info-color: #3498db;
+  
+  --bg-main: #121212;
+  --bg-card: #1e1e1e;
+  --bg-sidebar: #1a1a1a;
+  --bg-header: #2a2a2a;
+  
+  --text-primary: #f1f1f1;
+  --text-secondary: #b0b0b0;
+  --text-muted: #909090;
+  
+  --border-color: #444444;
+  
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow: 0 2px 4px rgba(0,0,0,0.5);
+  --shadow-lg: 0 5px 15px rgba(0,0,0,0.6);
+  
+  --chart-color-1: #7aa6de;
+  --chart-color-2: #7cc47c;
+  --chart-color-3: #ffb366;
+  --chart-color-4: #ff7c7c;
+  --chart-color-5: #8cd6d1;
+}
+
+// 系统主题
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --primary-color: #0d6efd;
+    --secondary-color: #adb5bd;
+    --success-color: #2fb344;
+    --danger-color: #e74c3c;
+    --warning-color: #f39c12;
+    --info-color: #3498db;
+    
+    --bg-main: #121212;
+    --bg-card: #1e1e1e;
+    --bg-sidebar: #1a1a1a;
+    --bg-header: #2a2a2a;
+    
+    --text-primary: #f1f1f1;
+    --text-secondary: #b0b0b0;
+    --text-muted: #909090;
+    
+    --border-color: #444444;
+    
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+    --shadow: 0 2px 4px rgba(0,0,0,0.5);
+    --shadow-lg: 0 5px 15px rgba(0,0,0,0.6);
+    
+    --chart-color-1: #7aa6de;
+    --chart-color-2: #7cc47c;
+    --chart-color-3: #ffb366;
+    --chart-color-4: #ff7c7c;
+    --chart-color-5: #8cd6d1;
+  }
+}

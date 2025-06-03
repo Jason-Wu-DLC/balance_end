@@ -1,0 +1,311 @@
+// 基础卡片
+.card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    
+    &:hover {
+      box-shadow: var(--shadow-lg);
+    }
+  }
+  
+  .card-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-header);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .card-footer {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-header);
+  }
+  
+  // 统计卡片
+  .stats-card {
+    padding: 1.5rem;
+    text-align: center;
+    
+    .stats-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      color: var(--primary-color);
+    }
+    
+    .stats-title {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stats-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stats-footer {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+    
+    // 变体
+    &.success .stats-icon { color: var(--success-color); }
+    &.warning .stats-icon { color: var(--warning-color); }
+    &.danger .stats-icon { color: var(--danger-color); }
+    &.info .stats-icon { color: var(--info-color); }
+  }
+  
+  // 统计卡片行
+  .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -0.75rem 1.5rem;
+    
+    .stats-col {
+      flex: 1;
+      min-width: 200px;
+      padding: 0 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    @media (max-width: $breakpoint-md) {
+      .stats-col {
+        flex: 0 0 50%;
+      }
+    }
+    
+    @media (max-width: $breakpoint-sm) {
+      .stats-col {
+        flex: 0 0 100%;
+      }
+    }
+  }
+  
+  // 模块状态卡片
+  .module-completion-card {
+    margin-bottom: 1.5rem;
+    
+    .module-status-item {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 1rem;
+      
+      .module-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+  
+  // 课程进度卡片
+  .course-progress-card {
+    margin-bottom: 1.5rem;
+    
+    .status-counts {
+      margin-top: 1.5rem;
+    }
+    
+    .chart-card {
+      height: 100%;
+      box-shadow: var(--shadow-sm);
+    }
+  }
+  
+  // 收藏卡片
+  .favorites-card {
+    margin-bottom: 1.5rem;
+    
+    .favorites-container {
+      display: flex;
+      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+      
+      @media (max-width: $breakpoint-md) {
+        flex-direction: column;
+      }
+    }
+    
+    .favorites-list, .favorites-chart {
+      flex: 1;
+    }
+    
+    .favorite-item {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-color);
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    
+    .favorite-info {
+      display: flex;
+      align-items: center;
+      
+      .star-icon {
+        color: var(--warning-color);
+        margin-right: 0.5rem;
+      }
+    }
+    
+    .summary-card {
+      text-align: center;
+      padding: 1rem;
+      
+      .summary-count {
+        display: block;
+        margin-top: 0.5rem;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+    }
+  }
+  
+  // 用户笔记卡片
+  .note-card {
+    margin-bottom: 1rem;
+    
+    .note-images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      
+      .note-image {
+        flex: 0 0 100px;
+        height: 100px;
+        border-radius: 4px;
+        overflow: hidden;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+    .tag-group {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .statistic {
+        margin-bottom: 1rem;
+        
+        .statistic-title {
+          font-size: 0.875rem;
+          color: var(--text-secondary);
+          margin-bottom: 0.5rem;
+        }
+        
+        .statistic-value {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: var(--text-primary);
+        }
+      }
+      
+      .empty-data {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        color: var(--text-muted);
+        font-style: italic;
+      }
+      
+      .status-counts {
+        margin-top: 1.5rem;
+      }
+  }
+
+  .feature-card {
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    .feature-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  .module-status-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .module-status-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .module-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .module-name {
+    font-size: 1rem;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    
+    &.success {
+      background-color: var(--success-color);
+      color: white;
+    }
+    
+    &.warning {
+      background-color: var(--warning-color);
+      color: black;
+    }
+    
+    &.default {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+  }

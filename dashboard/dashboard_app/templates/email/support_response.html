@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Support Ticket Response - BALANCE Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .message-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 10px 15px;
+            margin: 15px 0;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update on Your Support Ticket</h2>
+        <p>Hello {{ user_name }},</p>
+        <p>We've added a new response to your support ticket:</p>
+        <p><strong>Subject:</strong> {{ subject }}</p>
+        <p><strong>Ticket ID:</strong> #{{ ticket_id }}</p>
+
+        <div class="message-box">
+            {{ response_message }}
+        </div>
+
+        <p>Thank you for using the BALANCE Dashboard.</p>
+        <p>Best regards,<br>The BALANCE Team</p>
+    </div>
+</body>
+</html>

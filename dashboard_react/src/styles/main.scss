@@ -1,0 +1,124 @@
+// 主样式文件 - 导入所有样式表
+
+// 基础样式
+@import 'base/variables';
+@import 'base/typography';
+@import 'base/layout';
+@import 'base/animations';
+@import 'base/responsive';
+
+// 组件样式
+@import 'components/cards';
+@import 'components/charts';
+@import 'components/forms';
+@import 'components/tables';
+@import 'components/sidebar';
+@import 'components/heatmap.scss';
+
+// 页面样式
+@import 'pages/dashboard';
+@import 'pages/settings';
+@import 'pages/auth';
+@import 'pages/progress';
+
+// 主题
+@import 'themes';
+
+// Ant Design 覆盖样式
+.ant-select {
+  color: var(--text-primary);
+}
+
+.ant-select-dropdown {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.ant-select-item {
+  color: var(--text-primary);
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: var(--primary-color);
+}
+
+.ant-tabs-tab {
+  color: var(--text-secondary);
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: var(--primary-color);
+}
+
+.ant-tabs-ink-bar {
+  background-color: var(--primary-color);
+}
+
+.ant-modal-content {
+  background-color: var(--bg-card);
+}
+
+.ant-modal-header {
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.ant-modal-title {
+  color: var(--text-primary);
+}
+
+.ant-modal-footer {
+  border-top: 1px solid var(--border-color);
+}
+
+.ant-pagination-item {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+.ant-pagination-item a {
+  color: var(--text-primary);
+}
+
+.ant-pagination-item-active {
+  border-color: var(--primary-color);
+}
+
+.ant-pagination-item-active a {
+  color: var(--primary-color);
+}
+
+.ant-empty {
+  color: var(--text-muted);
+}
+
+.ant-statistic-title {
+  color: var(--text-secondary);
+}
+
+.ant-statistic-content {
+  color: var(--text-primary);
+}
+
+.ant-progress-text {
+  color: var(--text-primary);
+}
+
+.ant-tag {
+  border-color: var(--border-color);
+}
+
+.ant-alert {
+  background-color: var(--bg-header);
+  border-color: var(--border-color);
+}
+
+.ant-alert-message {
+  color: var(--text-primary);
+}
+
+.ant-alert-description {
+  color: var(--text-secondary);
+}
+

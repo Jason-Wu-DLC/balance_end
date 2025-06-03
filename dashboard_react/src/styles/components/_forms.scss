@@ -1,0 +1,391 @@
+// 表单元素
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+// 表单组
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+  background-clip: padding-box;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+  &:focus {
+    color: var(--text-primary);
+    background-color: var(--bg-card);
+    border-color: var(--primary-color);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  &::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+  
+  &:disabled,
+  &[readonly] {
+    background-color: var(--bg-header);
+    opacity: 1;
+  }
+}
+
+// 选择框
+.form-select {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+// 选择框（续）
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+background-repeat: no-repeat;
+background-position: right 0.75rem center;
+background-size: 16px 12px;
+border: 1px solid var(--border-color);
+border-radius: 0.25rem;
+appearance: none;
+transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+&:focus {
+  border-color: var(--primary-color);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+&:disabled {
+  background-color: var(--bg-header);
+  opacity: 1;
+}
+}
+
+// 复选框和单选框
+.form-check {
+display: block;
+min-height: 1.5rem;
+padding-left: 1.5em;
+margin-bottom: 0.125rem;
+}
+
+.form-check-input {
+width: 1em;
+height: 1em;
+margin-top: 0.25em;
+vertical-align: top;
+background-color: var(--bg-card);
+background-repeat: no-repeat;
+background-position: center;
+background-size: contain;
+border: 1px solid var(--border-color);
+appearance: none;
+
+&[type="checkbox"] {
+  border-radius: 0.25em;
+}
+
+&[type="radio"] {
+  border-radius: 50%;
+}
+
+&:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+&:focus {
+  border-color: var(--primary-color);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+}
+
+.form-check-label {
+color: var(--text-primary);
+}
+
+// 表单文本
+.form-text {
+margin-top: 0.25rem;
+font-size: 0.875em;
+color: var(--text-muted);
+}
+
+// 日期选择器
+.date-picker {
+width: 100%;
+
+.date-picker-input {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-card);
+  background-clip: padding-box;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+}
+
+// 搜索框
+.search-box {
+position: relative;
+
+.search-input {
+  padding-right: 2.5rem;
+}
+
+.search-icon {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+}
+
+// 按钮样式
+.btn {
+display: inline-block;
+font-weight: 400;
+line-height: 1.5;
+color: var(--text-primary);
+text-align: center;
+text-decoration: none;
+vertical-align: middle;
+cursor: pointer;
+user-select: none;
+background-color: transparent;
+border: 1px solid transparent;
+padding: 0.375rem 0.75rem;
+font-size: 1rem;
+border-radius: 0.25rem;
+transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+&:hover {
+  color: var(--text-primary);
+}
+
+&:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+&:disabled {
+  pointer-events: none;
+  opacity: 0.65;
+}
+}
+
+.btn-primary {
+color: #fff;
+background-color: var(--primary-color);
+border-color: var(--primary-color);
+
+&:hover {
+  color: #fff;
+  background-color: darken(#007bff, 7.5%);
+  border-color: darken(#007bff, 10%);
+}
+}
+
+.btn-secondary {
+color: #fff;
+background-color: var(--secondary-color);
+border-color: var(--secondary-color);
+
+&:hover {
+  color: #fff;
+  background-color: darken(#6c757d, 7.5%);
+  border-color: darken(#6c757d, 10%);
+}
+}
+
+.btn-success {
+color: #fff;
+background-color: var(--success-color);
+border-color: var(--success-color);
+
+&:hover {
+  color: #fff;
+  background-color: darken(#28a745, 7.5%);
+  border-color: darken(#28a745, 10%);
+}
+}
+
+.btn-danger {
+color: #fff;
+background-color: var(--danger-color);
+border-color: var(--danger-color);
+
+&:hover {
+  color: #fff;
+  background-color: darken(#dc3545, 7.5%);
+  border-color: darken(#dc3545, 10%);
+}
+}
+
+.btn-warning {
+color: #212529;
+background-color: var(--warning-color);
+border-color: var(--warning-color);
+
+&:hover {
+  color: #212529;
+  background-color: darken(#ffc107, 7.5%);
+  border-color: darken(#ffc107, 10%);
+}
+}
+
+.btn-info {
+color: #fff;
+background-color: var(--info-color);
+border-color: var(--info-color);
+
+&:hover {
+  color: #fff;
+  background-color: darken(#17a2b8, 7.5%);
+  border-color: darken(#17a2b8, 10%);
+}
+}
+
+.btn-outline-primary {
+color: var(--primary-color);
+border-color: var(--primary-color);
+
+&:hover {
+  color: #fff;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+}
+
+.btn-sm {
+padding: 0.25rem 0.5rem;
+font-size: 0.875rem;
+border-radius: 0.2rem;
+}
+
+.btn-lg {
+padding: 0.5rem 1rem;
+font-size: 1.25rem;
+border-radius: 0.3rem;
+}
+
+// 密码强度指示器
+.password-strength {
+margin-top: 0.5rem;
+
+.progress {
+  height: 0.5rem;
+  background-color: var(--bg-header);
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 0.25rem;
+  transition: width 0.3s ease;
+  
+  &.bg-danger {
+    background-color: var(--danger-color);
+  }
+  
+  &.bg-warning {
+    background-color: var(--warning-color);
+  }
+  
+  &.bg-success {
+    background-color: var(--success-color);
+  }
+}
+}
+
+// 主题选择器
+.theme-selector {
+display: flex;
+gap: 1.5rem;
+margin-bottom: 1rem;
+flex-wrap: wrap;
+}
+
+.theme-option {
+width: 100px;
+cursor: pointer;
+border-radius: 0.25rem;
+padding: 0.5rem;
+border: 2px solid transparent;
+transition: all 0.2s;
+text-align: center;
+
+&.active {
+  border-color: var(--primary-color);
+}
+
+&:hover:not(.active) {
+  border-color: var(--border-color);
+}
+}
+
+.theme-preview {
+height: 60px;
+border-radius: 0.25rem;
+margin-bottom: 0.5rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+
+.theme-text {
+font-size: 1.5rem;
+font-weight: bold;
+}
+
+.theme-accent {
+height: 10px;
+width: 50%;
+position: absolute;
+bottom: 0;
+border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.theme-name {
+font-size: 0.875rem;
+margin-top: 0.5rem;
+}
+
+.highlighted-text {
+    background-color: #ffc069;
+    padding: 0;
+  }
+  

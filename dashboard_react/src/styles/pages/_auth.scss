@@ -1,0 +1,327 @@
+// 身份验证页面（登录/注册/密码重置）样式
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-main);
+    padding: 2rem 1rem;
+  }
+  
+  // 卡片容器
+  .auth-card {
+    width: 100%;
+    max-width: 420px;
+    background-color: var(--bg-card);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+  
+  // 卡片头部
+  .auth-card-header {
+    padding: 1.5rem;
+    background-color: var(--bg-header);
+    text-align: center;
+    
+    .auth-logo {
+      max-width: 180px;
+      margin-bottom: 1rem;
+    }
+    
+    .auth-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .auth-subtitle {
+      color: var(--text-secondary);
+    }
+  }
+  
+  // 卡片内容
+  .auth-card-body {
+    padding: 1.5rem;
+  }
+  
+  // 卡片底部
+  .auth-card-footer {
+    padding: 1rem 1.5rem;
+    background-color: var(--bg-header);
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    
+    .auth-links {
+      margin-top: 0.5rem;
+      
+      a {
+        color: var(--primary-color);
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  // 登录表单
+  .login-form {
+    .form-control {
+      margin-bottom: 1rem;
+    }
+    
+    .login-btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    .forgot-password {
+      text-align: right;
+      margin-bottom: 1rem;
+      
+      a {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        text-decoration: none;
+        
+        &:hover {
+          color: var(--primary-color);
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  
+  // 注册表单
+  .signup-form {
+    .form-control {
+      margin-bottom: 1rem;
+    }
+    
+    .signup-btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+    
+    .terms-checkbox {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  // 密码重置表单
+  .password-reset-form {
+    .form-control {
+      margin-bottom: 1rem;
+    }
+    
+    .reset-btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+  }
+  
+  // 安全问题表单
+  .security-questions-form {
+    .question-group {
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  // 社交登录按钮
+  .social-login {
+    margin-top: 1.5rem;
+    text-align: center;
+    
+    .social-divider {
+      display: flex;
+      align-items: center;
+      margin: 1rem 0;
+      
+      &::before, &::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: var(--border-color);
+      }
+      
+      .social-divider-text {
+        padding: 0 1rem;
+        color: var(--text-muted);
+      }
+    }
+    
+    .social-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1rem;
+      
+      .social-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-card);
+        color: var(--text-primary);
+        transition: all 0.2s;
+        
+        &:hover {
+          background-color: var(--bg-header);
+        }
+        
+        .social-icon {
+          font-size: 1.25rem;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+  
+  // 响应式样式
+  @media (max-width: $breakpoint-sm) {
+    .auth-card {
+      max-width: 100%;
+    }
+    
+    .social-buttons {
+      flex-direction: column;
+    }
+  }
+
+  .index-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    .header-section {
+      padding: 3rem 0;
+      text-align: center;
+      background-color: var(--bg-header);
+      
+      .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+      }
+      
+      .logo-image {
+        max-width: 300px;
+        height: auto;
+        margin: 0 auto;
+      }
+      
+      .lead-text {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+      }
+    }
+    
+    .features-section {
+      padding: 3rem 0;
+      background-color: var(--bg-card);
+      
+      .section-title {
+        color: var(--text-primary);
+        margin-bottom: 2rem;
+      }
+    }
+    
+    .opensource-section {
+      padding: 3rem 0;
+      background-color: var(--bg-main);
+      
+      .section-title {
+        color: var(--text-primary);
+      }
+    }
+    
+    .author-section {
+      padding: 3rem 0;
+      background-color: var(--bg-header);
+      display: flex;
+      justify-content: center;
+      
+      .author-card {
+        background-color: var(--bg-card);
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow-sm);
+        
+        .author-content {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        
+        .icon-large {
+          font-size: 2.5rem;
+          color: var(--primary-color);
+        }
+        
+        .author-name {
+          font-weight: 700;
+          margin-bottom: 0.25rem;
+          color: var(--text-primary);
+        }
+        
+        .author-contact {
+          color: var(--text-secondary);
+          margin: 0;
+          
+          .link-primary {
+            color: var(--primary-color);
+            text-decoration: none;
+            
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+    
+    .page-footer {
+      padding: 1.5rem 0;
+      background-color: var(--bg-main);
+      margin-top: auto;
+      color: var(--text-muted);
+    }
+  }
+  
+  // 共享容器样式
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  // 文本工具类
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-muted {
+    color: var(--text-muted);
+  }
+  
+  // 间距工具类
+  .mt-3 {
+    margin-top: 1rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .mb-0 {
+    margin-bottom: 0;
+  }
