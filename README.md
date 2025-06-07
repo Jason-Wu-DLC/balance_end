@@ -1,5 +1,5 @@
 ## Overview
-An interactive web dashboard providing visual analytics for the BALANCE project - a NHMRC-funded initiative promoting wellbeing in adolescent and young adult cancer survivors. This dashboard transforms platform usage data into effective visualizations to help researchers understand user engagement patterns.
+An interactive web dashboard providing visual analytics for the BALANCE project. This dashboard transforms platform usage data into effective visualizations to help researchers understand user engagement patterns.
 ## Project Goals
 
 Data Visualization: Transform complex usage data into intuitive visual representations
