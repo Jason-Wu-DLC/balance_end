@@ -313,7 +313,6 @@ For technical support and questions:
 - **Email**: s4565901@student.uq.edu.au
 
 
-
 ## 🔄 Changelog
 
 ### Version 1.0.0 (Current)
@@ -330,4 +329,4 @@ For technical support and questions:
 - **API Extensions**: Enhanced REST API with GraphQL support
 
 
-*University of Queensland
+### University of Queensland
